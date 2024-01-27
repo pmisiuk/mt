@@ -11,6 +11,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@neodrag/vue": "^2.0.3",
+    "sass": "^1.70.0",
     "vue": "^3.3.11"
   },
   "devDependencies": {
