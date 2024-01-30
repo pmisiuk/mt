@@ -1,4 +1,14 @@
 <script setup>
+import { vDraggable } from '@neodrag/vue'
+import { computed, ref } from 'vue'
+
+const h = ref(213)
+const s = ref(100)
+const l = ref(50)
+const showControls = ref(true)
+
+const style = computed(() => `--color: hsl(${h.value},${s.value}%,${l.value}%)`)
+
 function toggleFullScreen() {
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen()
@@ -6,19 +16,16 @@ function toggleFullScreen() {
     document.exitFullscreen()
   }
 }
-
-import { vDraggable } from '@neodrag/vue'
-import { computed, ref } from 'vue'
-const h = ref(213)
-const s = ref(162)
-const l = ref(25)
-
-const style = computed(() => `--color: hsl(${h.value},${s.value}%,${l.value}%)`)
 </script>
 
 <template>
-  <div class="bg" :style="style">
-    <div class="controls" v-draggable="{ handle: '.controls__handle' }">
+  <div @click.self="showControls = !showControls" class="bg" :style="style">
+    <div
+      v-if="showControls"
+      ref="controls"
+      class="controls"
+      v-draggable="{ handle: '.controls__handle' }"
+    >
       <div class="controls__handle">
         <button @click="toggleFullScreen" type="button" class="btn">FS</button>
       </div>
