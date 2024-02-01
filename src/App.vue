@@ -21,7 +21,7 @@ function toggleFullScreen() {
 <template>
   <div @click.self="showControls = !showControls" class="bg" :style="style">
     <div
-      v-if="showControls"
+      v-show="showControls"
       ref="controls"
       class="controls"
       v-draggable="{ handle: '.controls__handle' }"
